@@ -57,11 +57,13 @@ public class servelt extends HttpServlet {
                 double i = (double)rs.getInt("Interest");  
                 int t = rs.getInt("Tenure");  
                 if(loan>=l&&Tenure>=t&&interest>=i){
-double emi=0;
-double pp=i/100;
-emi=l*pp*t*(12+pp);
-emi=emi/((12+pp)*t-1)*12;
-                out.println("<tr class=\"table-primary\"><td>" + b + "</td><td>" + l +"</td><td>" + i + "</td><td>" + t + "</td><td>" + emi + "</td></tr>");}
+		double emi=0;
+		double pp=i/1200;
+		double k=t;
+		t=t*24;
+		emi=l*i*Math.pow((1+i),t);
+	    	emi=emi/(Math.pow((1+i),t)-1);
+                out.println("<tr class=\"table-primary\"><td>" + b + "</td><td>" + l +"</td><td>" + i + "</td><td>" + k + "</td><td>" + emi + "</td></tr>");}
             }  
             out.println("</table>");  
             out.println("</html></body>");  
